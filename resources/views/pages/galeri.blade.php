@@ -40,24 +40,26 @@
 
             <!-- Gallery Grid -->
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <!-- Item 1 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:shadow-xl" data-aos="fade-up">
-                    <div class="aspect-w-16 aspect-h-9 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg" alt="Pramuka" class="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <div class="translate-y-4 transform transition-transform duration-300 group-hover:translate-y-0">
-                            <h3 class="mb-1 text-xl font-bold text-white">Kegiatan Pramuka</h3>
-                            <p class="text-sm text-gray-200">Latihan rutin setiap hari Sabtu</p>
+                @foreach ($galeri as $item)
+                    <!-- Item 1 -->
+                    <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:shadow-xl" data-aos="fade-up" {{ $item->id }}>
+                        <div class="aspect-w-16 aspect-h-9 overflow-hidden">
+                            <img src="{{ asset('storage/'.$item->image) }}" alt="Pramuka" class="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <div class="translate-y-4 transform transition-transform duration-300 group-hover:translate-y-0">
+                            <h3 class="mb-1 text-xl font-bold text-white">{{ $item->name }}</h3>
+                                <p class="text-sm text-gray-200">{{ $item->description }}</p>
+                            </div>
+                        </div>
+                        <div class="absolute right-4 top-4">
+                            <span class="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">{{ $item->category }}</span>
                         </div>
                     </div>
-                    <div class="absolute right-4 top-4">
-                        <span class="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">Ekstrakurikuler</span>
-                    </div>
-                </div>
+                @endforeach
 
                 <!-- Item 2 -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
+                {{-- <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
                     <div class="aspect-w-16 aspect-h-9 overflow-hidden">
                         <img src="https://images.pexels.com/photos/591774/pexels-photo-591774.jpeg" alt="Drumband" class="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
@@ -134,7 +136,7 @@
                     <div class="absolute right-4 top-4">
                         <span class="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">Ekstrakurikuler</span>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Load More Button -->

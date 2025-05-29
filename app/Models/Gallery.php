@@ -8,5 +8,5 @@ class Gallery extends Model
 {
     public $table = 'galleries';
 
-    public $fillable = ['name', 'image', 'description', 'category'];
+    public $fillable = ['name', 'image', 'description', 'category','status'];
 }
