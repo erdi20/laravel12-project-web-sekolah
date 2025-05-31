@@ -2,43 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gallery;
+use App\Models\School;
 use Illuminate\Http\Request;
 
-class GaleriController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $galeri = Gallery::all();
-        return view('pages.galeri', compact('galeri'));
-    }
-
-    public function ekstra()
-    {
-        $perPage = 10;
-        $galeri = Gallery::Active()
-            ->Ekstra()
-            ->paginate($perPage);
-        return \view('pages.galeri', \compact('galeri'));
-    }
-    public function akademik()
-    {
-        $perPage = 10;
-        $galeri = Gallery::Active()
-            ->Akademik()
-            ->paginate($perPage);
-        return \view('pages.galeri', \compact('galeri'));
-    }
-    public function event()
-    {
-        $perPage = 10;
-        $galeri = Gallery::Active()
-            ->Event()
-            ->paginate($perPage);
-        return \view('pages.galeri', \compact('galeri'));
+        $school = School::first();
+        return view('pages.home', compact('school'));
     }
 
     /**
@@ -46,7 +21,7 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

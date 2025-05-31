@@ -2,17 +2,18 @@
 
 namespace App\Filament\Pages;
 
-use App\Models\School as SchoolModel;  // Penting: Alias untuk menghindari konflik nama
-use Filament\Actions\Action;
-use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;  // Untuk layouting kolom
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Actions\Action;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Grid;  // Untuk layouting kolom
+use App\Models\School as SchoolModel;  // Penting: Alias untuk menghindari konflik nama
 
 class School extends Page
 {

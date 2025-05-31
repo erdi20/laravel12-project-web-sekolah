@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessage;
+use App\Models\School;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KontakController extends Controller
 {
@@ -11,23 +14,30 @@ class KontakController extends Controller
      */
     public function index()
     {
-        return \view('pages.kontak');
+        $school = School::first();
+        return \view('pages.kontak', \compact('school'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'string',
+            'email' => 'string|email',
+            'message' => 'string',
+            'subject' => 'string',
+        ]);
+        $data['replied'] = false;
+
+        ContactMessage::create($data);
+        return redirect('kontak');
     }
 
     /**

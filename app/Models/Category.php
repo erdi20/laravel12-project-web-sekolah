@@ -8,7 +8,7 @@ class Category extends Model
 {
     public $table = 'categories';
 
-    public $fillabel = [
+    public $fillable = [
         'name',
         'slug'
     ];

@@ -4,7 +4,7 @@
 
             <!-- About School -->
             <div>
-                <h3 class="text-xl font-bold mb-4">MI Islamiyah Banjarpoh</h3>
+                <h3 class="text-xl font-bold mb-4">{{ $school->name }}</h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
                     Sekolah dasar berbasis islami yang berkomitmen dalam menciptakan generasi cerdas, berbudi luhur, dan beriman.
                 </p>

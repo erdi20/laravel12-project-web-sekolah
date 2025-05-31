@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ekstrakulikuler;
 
 class EkstrakulikulerController extends Controller
 {
@@ -11,7 +12,8 @@ class EkstrakulikulerController extends Controller
      */
     public function index()
     {
-        return view('pages.ekstra');
+        $ekstrakurikuler = Ekstrakulikuler::all();
+        return view('pages.ekstra', compact('ekstrakurikuler'));
     }
 
     /**

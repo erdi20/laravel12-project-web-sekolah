@@ -24,18 +24,18 @@
 
             <!-- Filter Buttons -->
             <div class="mb-12 flex flex-wrap justify-center gap-3" data-aos="fade-up">
-                <button class="rounded-full bg-blue-600 px-5 py-2 font-medium text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <a href="{{ url('/galeri') }}" class="rounded-full bg-blue-600 px-5 py-2 font-medium text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Semua
-                </button>
-                <button class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                </a>
+                <a href="{{ url('/galeriakademik') }}" class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Akademik
-                </button>
-                <button class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                </a>
+                <a href="{{ url('/galeriekstra') }}" class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Ekstrakurikuler
-                </button>
-                <button class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                </a>
+                <a href="{{ url('/galerievent') }}" class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Event
-                </button>
+                </a>
             </div>
 
             <!-- Gallery Grid -->
@@ -140,11 +140,11 @@
             </div>
 
             <!-- Load More Button -->
-            <div class="mt-12 text-center" data-aos="fade-up">
+            {{-- <div class="mt-12 text-center" data-aos="fade-up">
                 <button class="rounded-full bg-white px-8 py-3 font-semibold text-blue-600 shadow-md transition-all hover:bg-blue-50 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Lihat Lebih Banyak
                 </button>
-            </div>
+            </div> --}}
         </div>
     </section>
 

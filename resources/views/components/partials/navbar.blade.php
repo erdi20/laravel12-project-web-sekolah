@@ -2,8 +2,8 @@
     <div class="container mx-auto flex items-center justify-between px-4 py-3 text-white">
         <!-- Logo -->
         <a href="{{ url('/') }}" class="flex items-center space-x-2 text-xl font-bold">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo Sekolah" class="h-8 w-8 object-contain">
-            <span>MI Islamiyah Banjarpoh</span>
+            <img src="{{ asset('storage/'.$school->logo) }}" alt="Logo Sekolah" class="h-8 w-8 object-contain">
+            <span>{{ $school->name ?? 'Sekolah' }}</span>
         </a>
 
         <!-- Desktop Nav -->

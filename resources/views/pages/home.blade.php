@@ -3,8 +3,8 @@
     <section class="hero-bg relative flex h-screen items-center justify-center text-white">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="relative z-10 mx-auto max-w-3xl px-4 text-center">
-            <h2 class="mb-4 text-4xl font-bold md:text-6xl">Selamat Datang di <br>MI Islamiyah Banjarpoh</h2>
-            <p class="mb-6 text-lg md:text-xl">Membina generasi unggul, berkarakter, dan siap menghadapi tantangan global.</p>
+            <h2 class="mb-4 text-4xl font-bold md:text-6xl">Selamat Datang di <br>{{ $school->name ?? 'Sekolah' }}</h2>
+            <p class="mb-6 text-lg md:text-xl">{{ $school->tagline ?? 'Tagline' }}</p>
             <a href="#tentang" class="inline-block rounded-full bg-blue-600 px-6 py-3 transition hover:bg-blue-700"> Pelajari Lebih </a>
         </div>
     </section>
@@ -16,10 +16,7 @@
                 <img src="{{ asset('storage/src/hero.jpg') }}" alt="Sekolah" class="w-full rounded object-cover shadow-md md:w-1/2" />
                 <div class="md:w-1/2">
                     <p class="leading-relaxed text-gray-700">
-                        Madrasah Ibtidaiyah Islamiyah Banjarpoh merupakan sekolah dasar berbasis Islam yang telah berdiri sejak tahun 1960 di Desa Pulorejo, Kecamatan Ngoro, Kabupaten Jombang. Sekolah ini berkomitmen untuk memberikan pendidikan berkualitas yang mengedepankan nilai-nilai keislaman, akhlak mulia, serta pengembangan karakter siswa. Dengan akreditasi B dan
-                        fasilitas yang memadai, MI Islamiyah Banjarpoh terus berupaya menciptakan lingkungan belajar yang kondusif, kreatif, dan inovatif bagi seluruh peserta didik.
-                        <br><br>
-                        Visi kami adalah menjadi sekolah unggul dalam mencetak generasi penerus bangsa yang berakhlak mulia, cerdas, kreatif, dan mandiri. Semua warga sekolah, mulai dari tenaga pendidik, siswa, hingga orang tua, bahu membahu menciptakan suasana belajar yang harmonis dan penuh semangat untuk mencapai tujuan bersama
+                        {!! str($school->description)->sanitizeHtml() !!}
                     </p>
                 </div>
             </div>

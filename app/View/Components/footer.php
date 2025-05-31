@@ -2,11 +2,11 @@
 
 namespace App\View\Components;
 
+use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Closure;
 
-class navbar extends Component
+class footer extends Component
 {
     public $school;
 
@@ -23,6 +23,6 @@ class navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.navbar');
+        return view('components.footer');
     }
 }

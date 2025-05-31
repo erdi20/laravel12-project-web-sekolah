@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="MI Islamiyah Banjarpoh - Lembaga Pendidikan Islam" />
     <title>{{ isset($title) ? $title . ' - MI Islamiyah Banjarpoh' : 'MI Islamiyah Banjarpoh' }}</title>
-
+    <link rel="icon" href="{{ asset('storage/'.$school->favicon) }}" type="image/x-icon">
     <!-- Preload important resources -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" as="script">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style">
