@@ -24,16 +24,19 @@
 
             <!-- Filter Buttons -->
             <div class="mb-12 flex flex-wrap justify-center gap-3" data-aos="fade-up">
-                <a href="{{ url('/galeri') }}" class="rounded-full bg-blue-600 px-5 py-2 font-medium text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                {{-- <a href="{{ url('/galeri') }}" class="rounded-full bg-blue-600 px-5 py-2 font-medium text-white transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Semua
+                </a> --}}
+                <a href="{{ url('/galeri') }}" class="{{ request()->is('galeri') ? 'bg-blue-600 text-white' : 'bg-white' }} rounded-full px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Semua
                 </a>
-                <a href="{{ url('/galeriakademik') }}" class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <a href="{{ url('/galeriakademik') }}" class="{{ request()->is('galeriakademik') ? 'bg-blue-600 text-white' : 'bg-white' }} rounded-full px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Akademik
                 </a>
-                <a href="{{ url('/galeriekstra') }}" class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <a href="{{ url('/galeriekstra') }}" class="{{ request()->is('galeriekstra') ? 'bg-blue-600 text-white' : 'bg-white' }} rounded-full px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Ekstrakurikuler
                 </a>
-                <a href="{{ url('/galerievent') }}" class="rounded-full bg-white px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <a href="{{ url('/galerievent') }}" class="{{ request()->is('galerievent') ? 'bg-blue-600 text-white' : 'bg-white' }} rounded-full px-5 py-2 font-medium text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Event
                 </a>
             </div>
@@ -44,11 +47,11 @@
                     <!-- Item 1 -->
                     <div class="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:shadow-xl" data-aos="fade-up" {{ $item->id }}>
                         <div class="aspect-w-16 aspect-h-9 overflow-hidden">
-                            <img src="{{ asset('storage/'.$item->image) }}" alt="Pramuka" class="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="Pramuka" class="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-110">
                         </div>
                         <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/40 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                             <div class="translate-y-4 transform transition-transform duration-300 group-hover:translate-y-0">
-                            <h3 class="mb-1 text-xl font-bold text-white">{{ $item->name }}</h3>
+                                <h3 class="mb-1 text-xl font-bold text-white">{{ $item->name }}</h3>
                                 <p class="text-sm text-gray-200">{{ $item->description }}</p>
                             </div>
                         </div>
