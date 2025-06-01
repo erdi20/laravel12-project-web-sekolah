@@ -35,5 +35,16 @@ class Post extends Model
     {
         return $query->where('status', true);
     }
-    
+
+    public function scopeQuery(Builder $query, string $search)
+    {
+        $search = strtolower(trim($search));
+        return $query->where(function (Builder $query) use ($search) {
+            $query
+                ->whereRaw('LOWER(title) LIKE ?', ["%{$search}%"])
+                ->orWhereRaw('LOWER(content) LIKE ?', ["%{$search}%"]);
+            // Anda bisa menambahkan kolom lain seperti 'summary' jika ada
+            // ->orWhereRaw('LOWER(summary) LIKE ?', ["%{$search}%"]);
+        });
+    }
 }

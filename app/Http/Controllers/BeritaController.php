@@ -5,18 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): view
     {
+        $perPage = 10;
+        $searchQuery = $request->query('search');
+
+        $berita = Post::active();
+        $searchQuery = $request->Query('search');
+        if ($searchQuery) {
+            $berita->query($searchQuery);  // <--- Panggil scope 'query' di sini
+        }
+
+        $berita = $berita->latest()->paginate($perPage);
+
         $kategori = Category::all();
-        $berita = Post::all()
-            ->where('status', true);
-        return view('pages.berita', compact('berita', 'kategori'));
+
+        return view('pages.berita', compact('berita', 'kategori', 'searchQuery'));
     }
 
     public function kategoriberita($slug)

@@ -117,8 +117,9 @@
                 <div class="lg:w-1/4">
                     <div class="sticky top-24 rounded-xl bg-white p-6 shadow-md">
                         <h4 class="mb-4 border-b pb-2 text-lg font-bold">Cari Berita</h4>
-                        <form class="mb-6">
-                            <input type="text" placeholder="Cari..." class="w-full rounded-md border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <form class="mb-6" method="GET" action="{{ url('search') }}">
+                            <input name="search" type="text" value="{{ request('search') }}" placeholder="Cari..." class="w-full rounded-md border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <button type="submit" class="sr-only">Cari</button>
                         </form>
 
                         <h4 class="mb-4 border-b pb-2 text-lg font-bold">Kategori</h4>
