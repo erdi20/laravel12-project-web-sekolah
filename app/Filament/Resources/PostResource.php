@@ -91,18 +91,16 @@ class PostResource extends Resource
                                 Section::make('Konten Postingan')
                                     ->description('Isi utama dan ringkasan postingan.')
                                     ->schema([
-                                        Forms\Components\Textarea::make('content')
+                                        Forms\Components\RichEditor::make('content')
                                             ->label('Isi Konten')
                                             ->placeholder('Tuliskan konten postingan Anda secara lengkap di sini...')
                                             ->required()
-                                            ->columnSpanFull()
-                                            ->rows(10),  // Memberikan tinggi awal yang lebih nyaman
-                                        Forms\Components\Textarea::make('summary')
+                                            ->columnSpanFull(),
+                                        Forms\Components\RichEditor::make('summary')
                                             ->label('Ringkasan Singkat')
                                             ->placeholder('Buat ringkasan singkat yang menarik untuk postingan Anda. Ini akan muncul di halaman daftar.')
                                             ->required()
-                                            ->columnSpanFull()
-                                            ->rows(5),  // Tinggi awal yang lebih nyaman
+                                            ->columnSpanFull(),
                                     ]),
                             ]),
                         Tabs\Tab::make('Media & Pengaturan')
