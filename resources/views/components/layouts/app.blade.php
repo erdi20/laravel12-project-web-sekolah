@@ -98,11 +98,7 @@
         });
 
         // Load external scripts after page is interactive
-        if (window.requestIdleCallback) {
-            window.requestIdleCallback(loadNonCriticalResources);
-        } else {
-            window.addEventListener('load', loadNonCriticalResources);
-        }
+        //
     </script>
 
     {{ $scripts ?? '' }}

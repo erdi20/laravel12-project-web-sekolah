@@ -1,10 +1,10 @@
 <x-layouts.app>
-    <section class="bg-gradient-to-br from-blue-700 to-indigo-800 text-white py-24 sm:py-32 relative overflow-hidden">
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-5xl font-extrabold mb-6" data-aos="fade-down">
+    <section class="relative overflow-hidden bg-gradient-to-br from-blue-700 to-indigo-800 py-24 text-white sm:py-32">
+        <div class="container relative z-10 mx-auto px-6 text-center">
+            <h1 class="mb-6 text-5xl font-extrabold" data-aos="fade-down">
                 Berita Terkini SMPN 1 Cerdas
             </h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <p class="mx-auto max-w-3xl text-xl leading-relaxed md:text-2xl" data-aos="fade-up" data-aos-delay="100">
                 Dapatkan informasi terbaru seputar kegiatan sekolah, prestasi siswa, dan berbagai pengumuman penting.
             </p>
         </div>
@@ -12,28 +12,36 @@
         <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-indigo-800 to-transparent"></div>
     </section>
 
-    <section class="py-24 bg-gray-100 relative overflow-hidden">
+    <section class="relative overflow-hidden bg-gray-100 py-24">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-12">
+            <div class="flex flex-col gap-12 lg:flex-row">
 
                 <div class="lg:w-3/4">
                     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        @foreach ($berita as $item)
+                            <div data="{{ $item->id }}" class="group relative overflow-hidden rounded-xl bg-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-75">
 
-                        <div class="group relative overflow-hidden rounded-xl shadow-md bg-white transition-transform duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up">
-                            <img src="https://images.unsplash.com/photo-1581090722127-1fadcf408b5f?auto=format&fit=crop&w=800&q=80" alt="Berita 1" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-75">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
-                                <span class="text-sm text-gray-300 mb-1">25 April 2025</span>
-                                <h3 class="text-lg font-semibold text-white line-clamp-2 group-hover:text-blue-300 transition-colors duration-300">
-                                    Siswa SMPN 1 Cerdas Raih Juara Olimpiade Sains Nasional
-                                </h3>
-                                <p class="text-sm text-gray-300 leading-relaxed mt-2 line-clamp-3">
-                                    Prestasi membanggakan diraih oleh tim sains SMPN 1 Cerdas pada ajang olimpiade tingkat nasional di Jakarta.
-                                </p>
-                                <a href="#" class="mt-4 inline-block text-blue-300 hover:underline text-sm font-medium">Baca Selengkapnya →</a>
+                                <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                    <span class="mb-1 text-sm text-gray-300">{{ $item->created_at->format('d M Y') }}</span>
+                                    <h3 class="line-clamp-2 text-lg font-semibold text-white transition-colors duration-300 group-hover:text-blue-300">
+                                        {{ $item->title }}
+                                    </h3>
+                                    <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-300">
+                                        {{ $item->summary }}
+
+                                    </p>
+                                    <!-- Tambahkan ini di blade template -->
+                                    {{-- {{ dd(url('beritadetail/' . $item->id)) }} --}}
+                                    <a href="/beritadetail/{{ $item->slug }}" class="relative z-10 mt-4 inline-block text-sm font-medium text-blue-300 hover:underline">Baca Selengkapnya →</a>
+                                </div>
+
+                                {{-- Ini adalah "stretched link" yang membuat seluruh card bisa diklik --}}
+                                <a href="/beritadetail/{{ $item->slug }}" class="absolute inset-0 z-[5] cursor-pointer"></a>
                             </div>
-                        </div>
+                        @endforeach
 
-                        <div class="group relative overflow-hidden rounded-xl shadow-md bg-white transition-transform duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
+                        {{-- <div class="group relative overflow-hidden rounded-xl shadow-md bg-white transition-transform duration-300 hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
                             <img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=800&q=80" alt="Berita 2" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-75">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
                                 <span class="text-sm text-gray-300 mb-1">23 April 2025</span>
@@ -101,31 +109,34 @@
                                 </p>
                                 <a href="#" class="mt-4 inline-block text-blue-300 hover:underline text-sm font-medium">Baca Selengkapnya →</a>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
 
                 <div class="lg:w-1/4">
-                    <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
-                        <h4 class="font-bold text-lg mb-4 border-b pb-2">Cari Berita</h4>
+                    <div class="sticky top-24 rounded-xl bg-white p-6 shadow-md">
+                        <h4 class="mb-4 border-b pb-2 text-lg font-bold">Cari Berita</h4>
                         <form class="mb-6">
-                            <input type="text" placeholder="Cari..." class="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <input type="text" placeholder="Cari..." class="w-full rounded-md border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         </form>
 
-                        <h4 class="font-bold text-lg mb-4 border-b pb-2">Kategori</h4>
+                        <h4 class="mb-4 border-b pb-2 text-lg font-bold">Kategori</h4>
                         <ul class="space-y-3 text-sm text-gray-700">
-                            <li><a href="#" class="hover:text-blue-600 transition-colors duration-300">Prestasi Siswa</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors duration-300">Kegiatan Sekolah</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors duration-300">Ekstrakurikuler</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors duration-300">Pengumuman</a></li>
-                            <li><a href="#" class="hover:text-blue-600 transition-colors duration-300">Artikel Pendidikan</a></li>
+                            @foreach ($kategori as $item)
+                                <li>
+                                    <a href="{{ url('kategoriberita/' . $item->slug) }}" class="relative z-30 block transition-colors duration-300 hover:text-blue-600">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
+                {{-- <li><a href="#" class="transition-colors duration-300 hover:text-blue-600">Kegiatan Sekolah</a></li>
+                <li><a href="#" class="transition-colors duration-300 hover:text-blue-600">Ekstrakurikuler</a></li>
+                <li><a href="#" class="transition-colors duration-300 hover:text-blue-600">Pengumuman</a></li>
+                <li><a href="#" class="transition-colors duration-300 hover:text-blue-600">Artikel Pendidikan</a></li> --}}
 
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-gray-100 to-transparent"></div>
     </section>
 </x-layouts.app>

@@ -19,6 +19,7 @@ Route::get('/galerievent', [GaleriController::class, 'event']);
 Route::get('/galeriekstra', [GaleriController::class, 'ekstra']);
 Route::get('/galeriakademik', [GaleriController::class, 'akademik']);
 Route::get('/berita', [BeritaController::class, 'index']);
-Route::get('/beritadetail', [BeritaController::class, 'detail']);
+Route::get('/beritadetail/{slug}', [BeritaController::class, 'detailBerita']);
+Route::get('/kategoriberita/{slug}', [BeritaController::class, 'kategoriberita']);
 Route::get('/kontak', [KontakController::class, 'index']);
 Route::post('/kirimpesan', [KontakController::class, 'store']);

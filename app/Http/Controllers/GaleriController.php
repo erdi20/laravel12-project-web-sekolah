@@ -12,7 +12,7 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        $galeri = Gallery::all();
+        $galeri = Gallery::all()->where('status', true);
         return view('pages.galeri', compact('galeri'));
     }
 

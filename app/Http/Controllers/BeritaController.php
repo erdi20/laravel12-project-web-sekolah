@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class BeritaController extends Controller
@@ -11,12 +13,27 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        return view('pages.berita');
+        $kategori = Category::all();
+        $berita = Post::all()
+            ->where('status', true);
+        return view('pages.berita', compact('berita', 'kategori'));
     }
 
-    public function detail()
+    public function kategoriberita($slug)
     {
-        return view('pages.detailberita');
+        $kategori = Category::all();
+        $ktgr = Category::where('slug', $slug)
+            ->firstOrFail();
+        $berita = Post::Active()
+            ->where('category_id', $ktgr->id)
+            ->get();
+        return view('pages.berita', compact('berita', 'kategori'));
+    }
+
+    public function detailBerita($slug)
+    {
+        $berita = Post::where('slug', $slug)->first();
+        return view('pages.detailberita', compact('berita'));
     }
 
     /**
