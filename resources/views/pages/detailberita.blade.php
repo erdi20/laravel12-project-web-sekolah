@@ -56,13 +56,16 @@
 
                         <h4 class="mb-6 border-b pb-3 text-xl font-bold text-gray-800">Berita Terbaru Lainnya</h4>
                         <ul class="space-y-6">
-                            <li>
-                                <a href="#" class="block transition-colors duration-300 hover:text-blue-600">
-                                    <h5 class="text-base font-semibold leading-snug text-gray-800">Lomba Debat Bahasa Indonesia Tingkat Kota</h5>
-                                    <span class="mt-1 block text-xs text-gray-500">23 April 2025</span>
-                                </a>
-                            </li>
-                            <li>
+                            @foreach ($beritaBaru as $item)
+                                <li>
+                                    <a href="{{ url('beritadetail/' . $item->slug) }}" class="block transition-colors duration-300 hover:text-blue-600">
+                                        <h5 class="text-base font-semibold leading-snug text-gray-800">{{ $item->title }}</h5>
+                                        <span class="mt-1 block text-xs text-gray-500">{{ $item->created_at->format('d M Y') }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+
+                            {{-- <li>
                                 <a href="#" class="block transition-colors duration-300 hover:text-blue-600">
                                     <h5 class="text-base font-semibold leading-snug text-gray-800">Pelantikan OSIS Periode 2025</h5>
                                     <span class="mt-1 block text-xs text-gray-500">20 April 2025</span>
@@ -74,12 +77,12 @@
                                     <span class="mt-1 block text-xs text-gray-500">12 April 2025</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="block transition-colors duration-300 hover:text-blue-600">
-                                    <h5 class="text-base font-semibold leading-snug text-gray-800">Kunjungan Industri ke PT Teknologi Cerdas</h5>
-                                    <span class="mt-1 block text-xs text-gray-500">23 April 2025</span>
-                                </a>
-                            </li>
+                            <li> --}}
+                            {{-- <a href="#" class="block transition-colors duration-300 hover:text-blue-600">
+                                <h5 class="text-base font-semibold leading-snug text-gray-800">Kunjungan Industri ke PT Teknologi Cerdas</h5>
+                                <span class="mt-1 block text-xs text-gray-500">23 April 2025</span>
+                            </a> --}}
+                            {{-- </li> --}}
                         </ul>
                     </div>
                 </div>

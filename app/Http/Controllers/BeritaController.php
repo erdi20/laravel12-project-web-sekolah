@@ -43,8 +43,9 @@ class BeritaController extends Controller
 
     public function detailBerita($slug)
     {
+        $beritaBaru = Post::latest()->take(4)->get();
         $berita = Post::where('slug', $slug)->first();
-        return view('pages.detailberita', compact('berita'));
+        return view('pages.detailberita', compact('berita','beritaBaru'));
     }
 
     /**
