@@ -15,6 +15,7 @@ use Filament\Forms;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -116,6 +117,11 @@ class PostResource extends Resource
                                             ->directory('post-images')  // Simpan di folder khusus
                                             ->visibility('public')  // Pastikan gambar bisa diakses publik
                                             ->required()
+                                            ->deleteUploadedFileUsing(function ($file) {
+                                                if ($file && Storage::disk('public')->exists($file)) {
+                                                    Storage::disk('public')->delete($file);
+                                                }
+                                            })
                                             ->disk('public'),  // Menggunakan disk 'public' yang telah dikonfigurasi
                                         // ->hint('Ukuran gambar disarankan: 1200x600 piksel'), // Hint untuk ukuran gambar
                                     ]),
@@ -173,6 +179,12 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->before(function ($record) {
+                        if ($record->image) {
+                            Storage::disk('public')->delete($record->image);
+                        }
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

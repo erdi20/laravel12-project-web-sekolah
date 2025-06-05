@@ -17,6 +17,7 @@ use Filament\Forms;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryResource extends Resource
 {
@@ -71,7 +72,12 @@ class GalleryResource extends Resource
                                             ->visibility('public')  // Pastikan gambar bisa diakses publik
                                             ->disk('public')  // Gunakan disk 'public'
                                             ->required()
-                                            ->columnSpanFull()  // Mengambil lebar penuh
+                                            ->columnSpanFull()
+                                            ->deleteUploadedFileUsing(function ($file) {
+                                                if ($file && Storage::disk('public')->exists($file)) {
+                                                    Storage::disk('public')->delete($file);
+                                                }
+                                            })
                                             ->helperText('Unggah gambar untuk item galeri ini. Ukuran maksimal 2MB.'),  // Helper text informatif
                                         Forms\Components\Toggle::make('status')
                                             ->label('Aktifkan Tampilan di Website?')  // Label yang lebih user-friendly
@@ -119,7 +125,12 @@ class GalleryResource extends Resource
             ->actions([
                 ActionGroup::make([
                     Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\DeleteAction::make()
+                        ->before(function ($record) {
+                            if ($record->image) {
+                                Storage::disk('public')->delete($record->image);
+                            }
+                        }),
                 ])
             ])
             ->bulkActions([

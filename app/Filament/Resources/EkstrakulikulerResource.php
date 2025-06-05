@@ -12,6 +12,7 @@ use Filament\Forms;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;  // Import Str facade untuk helper string
 
 class EkstrakulikulerResource extends Resource
@@ -62,6 +63,12 @@ class EkstrakulikulerResource extends Resource
                             ->directory('ekstrakurikuler')  // Simpan di direktori khusus
                             ->visibility('public')  // Pastikan file bisa diakses publik
                             ->required()
+                            ->deleteUploadedFileUsing(function ($file) {
+                                if ($file && Storage::disk('public')->exist($file)) {
+                                    Storage::disk('public')->delete($file);
+                                }
+                            })
+                            ->disk('public')  // Gunakan disk 'public'
                             ->imageEditor()  // Memungkinkan user mengedit gambar (potong, rotate)
                             ->columnSpanFull(),
                     ])
@@ -110,7 +117,12 @@ class EkstrakulikulerResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),  // Menambahkan Delete Action langsung
+                Tables\Actions\DeleteAction::make()
+                    ->before(function ($record) {
+                        if ($record->image) {
+                            Storage::disk('publis')->delete($record->image);
+                        }
+                    }),  // Menambahkan Delete Action langsung
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
