@@ -5,16 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="MI Islamiyah Banjarpoh - Lembaga Pendidikan Islam" />
+    @vite('resources/css/app.css')
     <title>{{ isset($title) ? $title . ' - MI Islamiyah Banjarpoh' : 'MI Islamiyah Banjarpoh' }}</title>
-    <link rel="icon" href="{{ asset('storage/'.$school->favicon) }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('storage/' . $school->favicon) }}" type="image/x-icon">
     <!-- Preload important resources -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" as="script">
+    {{-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" as="script"> --}}
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
 
     <!-- Tailwind CSS via CDN (better to install locally) -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script> --}}
 
     <!-- AOS Animations -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
