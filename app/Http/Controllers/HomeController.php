@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilitas;
+use App\Models\Gallery;
+use App\Models\Post;
 use App\Models\School;
 use Illuminate\Http\Request;
 
@@ -12,17 +15,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $school = School::first();
-        return view('pages.home', compact('school'));
+        $galeri = Gallery::all()->where('status', true);
+        $fasilitas = Fasilitas::all()->where('is_aktif', true)->last()->take(4)->get();
+        $berita = Post::active()->latest()->take(3)->get();
+        $school = School::all()->first();
+        return view('pages.home', compact('school', 'fasilitas', 'berita', 'galeri'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
